@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tablero de Sueños - Metas Grandes</title>
+  <link rel="stylesheet" href="style/main.css" />
+  <style>
+    body { background: #191e23; color: #e7ffee; font-family: 'Segoe UI', Arial, sans-serif; }
+    .meta-container { max-width: 750px; margin: 32px auto 38px auto; background: #22272b; border-radius: 18px; box-shadow: 0 3px 24px #0007; padding: 28px 30px 34px 30px; }
+    .meta-titulo { color: #ffd969; font-size: 2em; font-weight: bold; margin-bottom: 10px; text-align: center; }
+    .meta-descrip { text-align: center; font-size: 1.13em; margin-bottom: 18px; color: #fffbe8;}
+    .progreso-barra-bg { background: #29353c; border-radius: 16px; height: 22px; width: 100%; margin: 25px 0 14px 0; }
+    .progreso-barra { background: #09ffc8; height: 100%; border-radius: 16px 0 0 16px; transition: width .5s; font-weight: bold; color: #111; font-size: 1em; text-align: center; line-height: 22px; }
+    .meta-imagen { display: block; margin: 0 auto 22px auto; max-width: 190px; max-height: 120px; border-radius: 16px; border: 2px solid #ffe066; object-fit: cover;}
+    .meta-form { margin: 18px 0 24px 0; display: flex; flex-wrap: wrap; gap: 12px;}
+    .meta-form input[type="text"], .meta-form input[type="number"], .meta-form textarea { border-radius: 8px; border: none; background: #262f34; color: #9ff; font-size: 1.1em; padding: 9px; }
+    .meta-form label { color: #ffd969; font-weight: bold;}
+    .meta-form select { border-radius: 7px; background: #ffe066; color: #111; font-weight: bold; font-size: 1.03em; padding: 8px 10px;}
+    .meta-form button { background: #19ffc9; color: #21272a; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; padding: 10px 20px; margin-top: 7px; }
+    .meta-form button:hover { background: #11bda0; }
+    .premio-select-img { max-width: 85px; max-height: 55px; border-radius: 10px; border: 2px solid #aaa; margin: 5px 8px 5px 0; cursor: pointer; object-fit: cover; transition: border 0.17s;}
+    .premio-select-img.selected { border: 2.5px solid #19ffc9; }
+    .metas-subtitulo { font-size:1.14em; color: #ffd969; margin-top:20px; margin-bottom:7px; font-weight:bold;}
+    .aportes-lista { margin:0; padding:0 0 0 5px; list-style:none; }
+    .aportes-lista li { margin-bottom: 8px; color: #afe2dc;}
+    .aportes-form input[type="number"] { width:80px; margin-right:7px;}
+    .aportes-form button { padding: 6px 16px; }
+    .minidesafios-lista { margin:0; padding:0 0 0 5px; list-style:none; }
+    .minidesafios-lista li { margin-bottom:7px;}
+    .minidesafios-lista input[type="checkbox"] { margin-right:6px; }
+    .minidesafios-form input[type="text"] { width:210px; margin-right:7px;}
+    .minidesafios-form button { padding: 6px 12px;}
+    .celebracion-aywa { background:#262f3c; border-radius:14px; margin:22px 0 13px 0; color:#ffe066; text-align:center; font-size:1.19em; padding:22px 9px 19px 9px; border:2.2px solid #ffd969;}
+    @media (max-width: 840px){
+      .meta-container{padding:8px;}
+    }
+    @media (max-width: 510px){
+      .meta-container{padding:3px;}
+      .meta-titulo{font-size:1.27em;}
+    }
+  </style>
+</head>
+<body>
+<button onclick="window.location.href='index.html'" style="margin-bottom:16px;background:#ffe066;color:#1a1a1a;border:none;padding:9px 22px;font-size:1.08em;border-radius:9px;cursor:pointer;font-weight:bold;">← Volver al menú principal</button>
+  <div class="meta-container">
+    <div class="meta-titulo" id="metaTitulo">¡Tu Gran Meta!</div>
+    <div class="meta-descrip" id="metaDescripcion">¿Cuál es tu sueño más importante? Definí tu objetivo, tu premio y ¡alcanzalo paso a paso!</div>
+    
+    <img id="metaImagen" src="assets/metas/viaje.jpg" class="meta-imagen" alt="Premio" style="display:none;">
+    
+    <form class="meta-form" id="metaForm">
+      <label>Meta:</label>
+      <input type="text" id="inputMetaNombre" placeholder="Ej: Viaje a Europa" maxlength="38" required />
+      <label>Monto objetivo:</label>
+      <input type="number" id="inputMetaMonto" min="1" placeholder="Ej: 1000000" required />
+      <label>Descripción:</label>
+      <textarea id="inputMetaDesc" rows="2" maxlength="120" placeholder="Ej: Visitar París y Roma."></textarea>
+      <label>Imagen/Premio:</label>
+      <input type="file" id="inputMetaImg" accept="image/*" style="margin-bottom:9px;">
+      <div id="galeriaPremios"></div>
+      <button type="submit">Guardar Meta</button>
+    </form>
+
+    <div class="progreso-barra-bg">
+      <div id="barraProgreso" class="progreso-barra" style="width:0%">0%</div>
+    </div>
+    <div id="progresoTexto" style="text-align:center; margin-bottom:16px; color:#19ffc9; font-size:1.08em;"></div>
+
+    <div class="metas-subtitulo">Aportes y Avances</div>
+    <form class="aportes-form" id="aportesForm">
+      <input type="number" id="inputAporte" min="1" placeholder="Monto" required />
+      <button type="submit">Agregar Aporte</button>
+    </form>
+    <ul class="aportes-lista" id="aportesLista"></ul>
+
+    <div class="metas-subtitulo">Mini-desafíos (ayudan a cumplir la meta)</div>
+    <form class="minidesafios-form" id="minidesafiosForm">
+      <input type="text" id="inputMiniDesafio" maxlength="45" placeholder="Ej: No pedir delivery esta semana" required />
+      <button type="submit">Agregar</button>
+    </form>
+    <ul class="minidesafios-lista" id="minidesafiosLista"></ul>
+
+    <div id="desafiosSugeridos"></div>
+    <div id="celebracionAywa" class="celebracion-aywa" style="display:none;"></div>
+  </div>
+  <script src="js/metas.js"></script>
+</body>
+</html>

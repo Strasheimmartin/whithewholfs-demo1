@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Panel Integral: Hábitos + Desafíos</title>
+  <link rel="stylesheet" href="style/main.css" />
+  <script defer src="js/habitos-desafios.js"></script>
+</head>
+<body>
+  <div class="nav-bar">
+    <button class="btn-principal" onclick="window.location.href='index.html'">← Menú Principal</button>
+    <button class="btn-principal" onclick="window.location.href='finanzas.html'">Finanzas</button>
+  </div>
+  <div class="main-panel" style="flex-wrap: wrap;">
+    <!-- Columna izquierda: Hábitos -->
+    <div class="col-izq">
+      <h1>Hábitos Diarios</h1>
+      <form id="formNuevoHabito">
+        <input type="text" id="inputNombreHabito" placeholder="Nuevo hábito..." required maxlength="32" />
+        <select id="inputCategoriaHabito">
+          <option value="salud">Salud</option>
+          <option value="productividad">Productividad</option>
+          <option value="finanzas">Finanzas</option>
+          <option value="otros">Otros</option>
+        </select>
+        <button type="submit" class="btn-principal">Agregar</button>
+      </form>
+      <ul id="listaHabitos"></ul>
+      <div style="margin-top:18px;">
+        <h2>Progreso de Hábitos</h2>
+        <progress id="progresoHabitos" value="0" max="100" style="width:100%;height:28px;"></progress>
+        <p id="txtProgresoHabitos"></p>
+        <button class="btn-principal" onclick="resetearHabitos()">Resetear Día</button>
+      </div>
+    </div>
+
+    <!-- Columna central: Lobezno y XP -->
+    <div class="col-der" style="max-width:350px;">
+      <div class="lobezno-container bloque-panel" style="margin-bottom:20px;">
+        <h2>Tu Lobezno</h2>
+        <img id="imgLobezno" src="assets/img/lobezno-balanceado.png" alt="Lobezno" />
+        <p id="fraseLobezno">¡Cumplí hábitos y desafíos para evolucionar!</p>
+      </div>
+      <div class="bloque-panel">
+        <h2>Experiencia (XP)</h2>
+        <progress id="xpBar" value="0" max="100" style="width:100%;height:24px;"></progress>
+        <p id="xpText">0 / 100 XP</p>
+        <p id="xpNivel">Nivel 1</p>
+      </div>
+    </div>
+
+    <!-- Columna derecha: Desafíos -->
+    <div class="col-izq">
+      <h1>Desafíos</h1>
+      <form id="formNuevoDesafio">
+        <input type="text" id="inputNombreDesafio" placeholder="Nuevo desafío..." required maxlength="40" />
+        <select id="inputCategoriaDesafio">
+          <option value="diario">Diario</option>
+          <option value="semanal">Semanal</option>
+        </select>
+        <button type="submit" class="btn-principal">Agregar</button>
+      </form>
+      <ul id="listaDesafios"></ul>
+      <div style="margin-top:18px;">
+        <h2>Progreso de Desafíos</h2>
+        <progress id="progresoDesafios" value="0" max="100" style="width:100%;height:28px;"></progress>
+        <p id="txtProgresoDesafios"></p>
+        <button class="btn-principal" onclick="resetearDesafios()">Resetear Desafíos</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

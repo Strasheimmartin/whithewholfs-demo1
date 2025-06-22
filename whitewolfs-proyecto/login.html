@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ingreso | White Wolfs</title>
+  <link rel="stylesheet" href="style/main.css" />
+  <style>
+  body {
+    background: #1b232c;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+  }
+  .login-container {
+    max-width: 350px;
+    margin: 7% auto 0 auto;
+    background: #222b36;
+    border-radius: 20px;
+    box-shadow: 0 0 28px #0007;
+    padding: 38px 26px 22px 26px;
+    text-align: center;
+    color: #fff;
+  }
+  .login-container h2 {
+    color: #18f8b6;
+    margin-bottom: 18px;
+  }
+  .login-container input[type="text"],
+  .login-container input[type="password"] {
+    width: 95%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 9px;
+    border: none;
+    background: #1c2530;
+    color: #e8f6fa;
+    font-size: 1em;
+    outline: none;
+    box-shadow: 0 1px 8px #0002;
+  }
+  .login-container button,
+  .login-container .forgot-link {
+    width: 99%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #38bdf8;
+    color: #222;
+    border: none;
+    padding: 13px 0 12px 0;
+    border-radius: 11px;
+    font-weight: bold;
+    font-size: 1.06em;
+    margin-bottom: 10px;
+    box-shadow: 0 1px 12px #1115;
+    transition: background 0.17s, color 0.17s;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    line-height: 1.1;
+  }
+  .login-container button:hover,
+  .login-container .forgot-link:hover {
+    background: #0ea5e9;
+    color: #fff;
+  }
+  .login-container .forgot-link {
+    background: #38bdf8;
+    color: #181d22;
+    border: none;
+    font-weight: bold;
+    font-size: 1.05em;
+    margin-bottom: 8px;
+    margin-top: -4px;
+    text-decoration: underline;
+    box-shadow: 0 1px 12px #1113;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  .toggle {
+    color: #fff;
+    margin-top: 10px;
+    font-size: 0.99em;
+  }
+  .toggle span {
+    color: #38bdf8;
+    cursor: pointer;
+    text-decoration: underline;
+    margin-left: 5px;
+  }
+  #error {
+    color: #ff7b7b;
+    min-height: 16px;
+    margin-bottom: 6px;
+    font-size: 0.98em;
+    font-weight: bold;
+    letter-spacing: 0.1px;
+  }
+  .recuperar-container {
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: #000a;
+    z-index: 99;
+  }
+  .recuperar-box {
+    background: #232c3c;
+    padding: 32px 22px 20px 22px;
+    border-radius: 15px;
+    box-shadow: 0 4px 32px #0009;
+    max-width: 90vw;
+    width: 340px;
+    color: #fff;
+    text-align: center;
+  }
+  .recuperar-box input {
+    width: 95%;
+    padding: 10px;
+    border-radius: 7px;
+    border: none;
+    margin-bottom: 12px;
+    background: #1c2530;
+    color: #e8f6fa;
+    font-size: 1em;
+  }
+  .recuperar-box button {
+    width: 98%;
+    padding: 11px 0;
+    border-radius: 9px;
+    background: #38bdf8;
+    color: #222;
+    border: none;
+    font-weight: bold;
+    font-size: 1em;
+    box-shadow: 0 1px 7px #1112;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .recuperar-box .cerrar {
+    background: #ff7b7b;
+    color: #fff;
+    margin-top: 5px;
+  }
+  @media (max-width: 430px) {
+    .login-container {
+      max-width: 99vw;
+      margin: 9vw auto 0 auto;
+      padding: 20px 3vw 16px 3vw;
+    }
+  }
+</style>
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <h2 id="loginTitle">Iniciar Sesión</h2>
+    <form id="loginForm">
+      <input type="text" id="user" placeholder="Nombre de usuario" required autocomplete="username" />
+      <input type="password" id="password" placeholder="Contraseña" required autocomplete="current-password" />
+      <button type="submit" id="loginBtn">Ingresar</button>
+      <button type="submit" id="registerBtn" style="display:none; margin-bottom:4px;">Registrarme</button>
+      <button type="button" class="forgot-link" id="forgotBtn">¿Olvidaste tu contraseña?</button>
+      <p id="error"></p>
+    </form>
+    <div class="toggle">
+      <span id="toggleForm">¿No tienes cuenta? <span style="color:#38bdf8; cursor:pointer;" id="goRegister">Regístrate aquí</span></span>
+    </div>
+  </div>
+
+  <!-- Modal recuperar contraseña -->
+  <div class="recuperar-container" id="recuperarContainer">
+    <div class="recuperar-box">
+      <h3>Recuperar Contraseña</h3>
+      <input type="text" id="recupUser" placeholder="Nombre de usuario" autocomplete="username">
+      <input type="password" id="recupNewPass" placeholder="Nueva contraseña" autocomplete="new-password">
+      <button id="recupBtn">Actualizar contraseña</button>
+      <button class="cerrar" id="cerrarRecup">Cancelar</button>
+      <div id="recupError" style="color:#fbb;"></div>
+    </div>
+  </div>
+  <script src="js/login.js"></script>
+</body>
+</html>

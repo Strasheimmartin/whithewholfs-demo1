@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Educación Financiera - White Wolfs</title>
+  <link rel="stylesheet" href="style/main.css" />
+  <style>
+    body { background: #191f23; color: #f7fff0; font-family: 'Segoe UI', Arial, sans-serif; margin:0;}
+    .container { max-width: 700px; margin: 42px auto 0 auto; background: #222b2f; border-radius: 18px; box-shadow: 0 2px 22px #0007; padding: 32px 20px 32px 20px;}
+    h1 { color: #18f8b6; font-size: 2.16em; margin-bottom: 26px; text-align: center;}
+    .acordeon { width: 100%; }
+    .acordeon-item { background: #263136; border-radius: 13px; margin-bottom: 14px; box-shadow: 0 1px 6px #0002;}
+    .acordeon-titulo { padding: 17px 22px; font-size: 1.06em; font-weight: bold; color: #ffe066; display: flex; align-items: center; cursor: pointer; border-radius: 13px; }
+    .acordeon-titulo .icono {font-size:1.12em;margin-right:10px;}
+    .acordeon-titulo .arrow {margin-left:auto;transition:transform .22s;font-size:1em;}
+    .acordeon-item.abierto .acordeon-titulo .arrow { transform: rotate(90deg);}
+    .acordeon-contenido { padding: 0 16px 14px 36px; display: none; color: #bdf5e5; font-size: 1em;}
+    .acordeon-item.abierto .acordeon-contenido { display: block; animation: fadeIn .34s;}
+    @keyframes fadeIn { from{ opacity:0; transform:translateY(18px);} to{opacity:1;transform:none;}}
+    .ejemplo { background:#182c20; color:#78efb2; border-radius:9px; padding:7px 10px; margin:10px 0 7px 0; font-size:.97em;}
+    .img-acordeon {margin:8px 0 6px 0; border-radius:9px; box-shadow:0 1px 7px #0004;max-width:92%;}
+    .video-link {display:inline-block;margin:7px 0 0 0;font-size:1.02em;color:#4fdaff;text-decoration:underline;}
+    .video-link:hover {color:#18f8b6;}
+    .volver-btn { background:#ffe066;color:#1e2326;font-weight:bold;border:none;border-radius:9px;padding:10px 22px;font-size:1.04em;cursor:pointer;margin-bottom:18px;display:block;margin-left:auto;margin-right:auto;}
+    .volver-btn:hover {background:#ffdc39;}
+    /* RESPONSIVE mejorado */
+    @media (max-width: 750px) {
+      .container {padding: 6px 2vw;}
+      .acordeon-titulo {font-size: 0.98em; padding:12px 12px;}
+      .acordeon-contenido {padding:0 3vw 10px 6vw; font-size: .98em;}
+      .acordeon-titulo .icono {font-size:1em;}
+      h1 { font-size: 1.18em;}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <button class="volver-btn" onclick="window.location.href='index.html'">← Volver al menú principal</button>
+    <h1>Educación Financiera</h1>
+    <div class="acordeon" id="acordeonFinanciero">
+      <!-- Temas cargados por JS -->
+    </div>
+  </div>
+  <script src="js/educacion.js"></script>
+</body>
+</html>

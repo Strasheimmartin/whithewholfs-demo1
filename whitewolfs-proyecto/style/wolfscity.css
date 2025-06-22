@@ -1,0 +1,280 @@
+body {
+    background: #11141a;
+    color: #fff;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+.btn-volver-menu {
+    position: fixed;
+    top: 24px;
+    left: 24px;
+    z-index: 101;
+    background: #18f8b6;
+    color: #222;
+    border: none;
+    padding: 11px 22px;
+    font-size: 1.02em;
+    border-radius: 14px;
+    font-weight: bold;
+    box-shadow: 0 2px 8px #0003;
+    cursor: pointer;
+    transition: background 0.17s;
+}
+.btn-volver-menu:hover {
+    background: #38bdf8;
+    color: #fff;
+}
+
+.ciudad-fondo {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    z-index: 0;
+    background: radial-gradient(circle at 50% 50%, #263042 52%, #181c24 100%);
+    pointer-events: none;
+}
+
+.wolfscity-mapa {
+    position: relative;
+    width: 700px;
+    height: 680px;
+    margin: 38px auto 0 60px;
+    z-index: 1;
+    display: block;
+}
+
+.lugares-circulo {
+    position: absolute;
+    top: 47%;
+    left: 49%;
+    width: 540px;
+    height: 540px;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+.lugar {
+    --angle: calc(var(--pos) * 51.43deg);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 120px;
+    transform:
+        rotate(var(--angle))
+        translateY(-230px)
+        rotate(calc(-1 * var(--angle)));
+    text-align: center;
+    cursor: pointer;
+    pointer-events: all;
+    transition: transform 0.15s;
+    z-index: 1;
+}
+.lugar img {
+    width: 90px;
+    height: 90px;
+    margin-bottom: 4px;
+    object-fit: contain;
+    background: #1a253a;
+    border-radius: 18px;
+    border: 3px solid #232943;
+    box-shadow: 0 2px 12px #0e18344c;
+    transition: transform 0.18s;
+}
+.lugar span {
+    display: block;
+    color: #fff;
+    font-size: 1.07em;
+    font-weight: 500;
+    margin-top: 3px;
+    text-shadow: 0 1px 3px #0006;
+    white-space: nowrap;
+}
+.lugar:hover img {
+    transform: scale(1.13);
+    border-color: #1dd1a1;
+}
+
+/* Avatar Central */
+.avatar-central {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -52%);
+    z-index: 2;
+    text-align: center;
+}
+.avatar-central img {
+    width: 144px;
+    height: 144px;
+    border-radius: 50%;
+    border: 5px solid #1dd1a1;
+    box-shadow: 0 2px 14px #0c22381a;
+    background: #17223b;
+    object-fit: cover;
+}
+.usuario-nivel {
+    margin-top: 7px;
+    background: #2d8ff6;
+    display: inline-flex;
+    align-items: center;
+    border-radius: 22px;
+    padding: 0 15px;
+    gap: 7px;
+    color: #fff;
+    font-size: 1.09em;
+    font-weight: 500;
+    box-shadow: 0 1px 6px #0003;
+    position: relative;
+    top: 4px;
+}
+.nivel-badge {
+    background: #ffd900;
+    color: #253;
+    font-weight: bold;
+    border-radius: 8px;
+    padding: 1px 9px;
+    margin-left: 8px;
+    font-size: .99em;
+}
+
+/* IDs en minúsculas para Vercel */
+#tooltipciudad {
+    display: none;
+    position: fixed;
+    pointer-events: none;
+    background: #101926ed;
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 1em;
+    box-shadow: 0 2px 16px #0006;
+    z-index: 1001;
+}
+
+/* Panel resumen */
+.panel-resumen {
+    position: fixed;
+    top: 60px;
+    right: 30px;
+    background: #151b2bde;
+    color: #fff;
+    border-radius: 24px;
+    padding: 22px 30px 18px 32px;
+    min-width: 210px;
+    box-shadow: 0 2px 26px #0008;
+    font-size: 1.18em;
+    font-family: inherit;
+    z-index: 10;
+}
+.panel-resumen span { font-weight: bold; }
+#saldoactual { color: #01ff9d }
+#energiaactual { color: #55d8ff }
+#activosactual { color: #fdc425 }
+#misionesactual { color: #f953c6 }
+.panel-resumen hr { border: .5px solid #1dd1a1; margin: 12px 0 9px 0;}
+.panel-resumen div:last-child { font-size: .99em }
+
+/* Modal genérico */
+.modal-ciudad {
+    display: none;
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1004;
+    min-width: 350px;
+    background: #252f45;
+    padding: 38px 30px 30px 30px;
+    border-radius: 24px;
+    box-shadow: 0 7px 32px #000d;
+    color: #fff;
+}
+.modal-contenido h2 {
+    margin-top: 0;
+}
+.modal-fondo {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background: #0009;
+    z-index: 1003;
+}
+.btn-cerrar-modal {
+    background: #38bdf8;
+    color: #fff;
+    font-weight: 700;
+    border: none;
+    border-radius: 9px;
+    padding: 8px 22px;
+    font-size: 1.01em;
+    position: absolute;
+    right: 20px;
+    top: 13px;
+    cursor: pointer;
+}
+.btn-cerrar-modal:hover {
+    background: #13ffcf;
+    color: #101420;
+}
+.btn-modal-accion {
+    background: #18f8b6;
+    color: #232b39;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 20px;
+    margin-top: 20px;
+    font-size: 1.08em;
+    font-weight: 700;
+    box-shadow: 0 2px 10px #0007;
+    cursor: pointer;
+    transition: background 0.18s;
+}
+.btn-modal-accion:hover {
+    background: #38bdf8;
+    color: #fff;
+}
+.frase-eywa {
+    font-style: italic;
+    font-size: 1.02em;
+    margin: 18px 0 0 0;
+    color: #38bdf8;
+}
+
+@media (max-width: 900px) {
+    .wolfscity-mapa {
+        width: 94vw;
+        height: 94vw;
+        min-width: 240px;
+        min-height: 240px;
+        margin: 20px auto 0 auto;
+    }
+    .lugares-circulo {
+        width: 74vw;
+        height: 74vw;
+        min-width: 160px;
+        min-height: 160px;
+        top: 50%;
+        left: 50%;
+    }
+    .lugar {
+        width: 58px;
+    }
+    .lugar img { width: 36px; height: 36px;}
+    .avatar-central img { width: 58px; height: 58px; }
+    .panel-resumen {
+        left: 50%; transform: translateX(-50%);
+        top: unset; bottom: 0;
+        width: 95vw; min-width: unset;
+        padding: 10px 8px;
+        border-radius: 15px 15px 0 0;
+        font-size: 0.95em;
+        z-index: 1009;
+    }
+    .modal-ciudad {
+        min-width: 86vw;
+        padding: 15vw 7vw 12vw 7vw;
+        border-radius: 20px;
+        font-size: 0.97em;
+    }
+}

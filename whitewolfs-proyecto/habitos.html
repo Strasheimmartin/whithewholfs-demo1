@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Panel de Hábitos</title>
+  <link rel="stylesheet" href="style/main.css" />
+  <style>
+    body { background: #161b1e; color: #e7ffee; font-family: 'Segoe UI', Arial, sans-serif; }
+    .main-panel { display: flex; flex-direction: row; justify-content: center; align-items: flex-start; gap: 36px; margin: 36px 0 0 0; padding: 0 16px 40px 16px; }
+    .col-izq { flex: 0 0 235px; max-width: 260px; min-width: 180px; background: #1e2326; border-radius: 16px; box-shadow: 0 2px 12px #0006; padding: 19px 12px 19px 16px; }
+    .col-der { flex: 1 1 450px; max-width: 680px; min-width: 340px; background: #21272a; border-radius: 18px; box-shadow: 0 2px 18px #0008; padding: 28px 28px 32px 28px;}
+    h1 { color: #19ffc9; font-size: 2.1em; margin-bottom: 20px; letter-spacing: 1px;}
+    .btn-volver { background:#ffe066; color:#1e2326; font-weight:bold; border:none; border-radius:9px; padding:8px 20px; font-size:1.04em; cursor:pointer; margin-bottom:22px;}
+    .btn-volver:hover { background:#ffdc39; }
+    .habitos-izq-titulo { font-size:1.13em; font-weight:bold; color:#ffe066; margin-bottom:12px; letter-spacing:1px; }
+    .habitos-izq-lista { list-style:none; padding-left:0; max-height:510px; overflow-y:auto; }
+    .habito-izq-item { margin-bottom:12px; background:#283036; border-radius:8px; padding:8px 10px 8px 9px; font-size:1.07em; display:flex; align-items:center; gap:6px; }
+    .habito-izq-item .icono { margin-right:5px; font-size:1.18em; }
+    .habito-izq-item .habit-tipo { font-size:.98em; color:#7ef5e9; margin-left:4px; }
+    .habito-izq-item .btn-mark { background:#19ffc9; border:none; border-radius:6px; padding:2px 8px; margin-left:auto; margin-right:4px; color:#222; font-size:.99em; cursor:pointer; }
+    .habito-izq-item .btn-mark.cumplido { background:#25db76; color:#fff; }
+    .habito-izq-item .btn-del { background:#ff5555; border:none; border-radius:6px; padding:2px 8px; color:#fff; font-size:1em; cursor:pointer; }
+    .habit-form { display: flex; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; }
+    .habit-form input, .habit-form select { padding: 8px 8px; border-radius: 8px; border: none; background: #262f34; color: #9ff; font-size: 1.06em; }
+    .habit-form button { padding: 8px 18px; background: #19ffc9; color: #21272a; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; transition: background 0.18s; }
+    .habit-form button:hover { background: #12c9a1; }
+    .habit-form .recordatorio-toggle { margin-left: 20px; background: #ffe066; color: #1e2326; font-weight: bold; border: none; border-radius: 7px; padding: 7px 17px; cursor: pointer; transition: background .16s; }
+    .habit-form .recordatorio-toggle.on { background: #25db76; color: #fff; }
+    .recordatorio-status { font-size: 1.03em; color: #ffe066; margin-bottom: 10px; }
+    .reco-btn { margin-bottom:14px; background:#ffe066; color:#1a1a1a; font-weight:bold; border-radius:8px; padding:8px 13px 8px 30px; border:none; cursor:pointer; position:relative; }
+    .reco-btn::before { content:"🌟"; position:absolute; left:8px; top:8px; }
+    .habit-list { margin-top: 20px; }
+    .habit-item { display: flex; align-items: center; justify-content: space-between; background: #283036; border-radius: 11px; margin-bottom: 10px; padding: 9px 15px; border-left: 6px solid #19ffc9; transition: border-color .18s; }
+    .habit-item.cumplido { border-color: #25db76; background: #27392f; }
+    .habit-item .info { display: flex; align-items: center; }
+    .habit-name { font-size: 1.15em; font-weight: bold; margin-right: 9px; }
+    .habit-freq { font-size: .98em; color: #7ef5e9; }
+    .racha { background: #0d2328; color: #4af6b6; border-radius: 8px; padding: 2px 10px; margin-left: 10px; font-size: .97em; }
+    .historial { margin-left:16px; }
+    .hist-dia { display: inline-block; width:22px; height:22px; border-radius:50%; margin-right:2px; font-size:1.07em; text-align:center; line-height:22px; }
+    .hist-cumplido { background: #25db76; color:#fff; }
+    .hist-pendiente { background: #283036; color:#888; }
+    .hist-fallido { background: #ff4060; color:#fff; }
+    .btn-done, .btn-del { border: none; padding: 7px 14px; border-radius: 7px; font-size: 1em; cursor: pointer; }
+    .btn-done { background: #19ffc9; color: #1a1a1a; margin-right: 7px; font-weight:bold; }
+    .btn-done.cumplido { background: #25db76; color: #fff; }
+    .btn-del { background: #ff5555; color: #fff; }
+    .btn-ics { background: #ffe066; color: #232d32; border: none; border-radius: 7px; padding: 6px 10px; margin-left: 7px; cursor: pointer; font-size: .98em; }
+    .btn-ics:hover { background: #ffdc39; }
+    .aywa { font-style: italic; color: #ffe066; margin-top: 15px; font-size:1.11em; }
+    .lobezno { display:flex; align-items:center; margin-top:24px; }
+    .lobezno-emoji { font-size:2.3em; margin-right:14px; }
+    .reco-panel { background:#252e36; border-radius:12px; padding:18px 19px; margin:0 0 18px 0; }
+    .reco-hab { margin-bottom:15px; }
+    .reco-titulo { font-size:1.08em; font-weight:bold; margin-bottom:3px; }
+    .reco-desc { font-size:.97em; color:#fffa; }
+    .reco-benef { margin:9px 0 8px 0; padding:10px 13px; background:#283e36; border-radius:8px; color:#bdf5e5; }
+    .reco-lista { margin:0 0 7px 0; padding-left:15px; }
+    .reco-p { color:#dcf7ee; font-size:1em; }
+    .reco-btn-benef { padding:5px 12px; border-radius:7px; background:#eee; color:#273036; font-weight:bold; cursor:pointer; margin-right:9px; border:none; }
+    .reco-btn-add { padding:6px 16px; border-radius:7px; background:#19ffc9; color:#21272a; font-weight:bold; border:none; cursor:pointer; }
+    @media (max-width: 1000px){
+      .main-panel { flex-direction:column; gap:22px; }
+      .col-izq { margin-bottom:14px; }
+    }
+    @media (max-width: 690px){
+      .main-panel { padding:0 0 24px 0; }
+      .col-der, .col-izq { padding:10px 7px 16px 7px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="main-panel">
+    <!-- Columna izquierda: Hábitos activos -->
+    <div class="col-izq">
+      <button class="btn-volver" onclick="window.location.href='index.html'">← Volver al menú principal</button>
+      <div class="habitos-izq-titulo">Hábitos activos</div>
+      <ul id="habitosIzqLista" class="habitos-izq-lista"></ul>
+    </div>
+    <!-- Columna derecha: Panel central de hábitos -->
+    <div class="col-der">
+      <h1>Panel de Hábitos</h1>
+      <div class="recordatorio-status" id="recordatorioStatus"></div>
+      <form id="habitForm" class="habit-form">
+        <input type="text" id="habitName" placeholder="Nuevo hábito" required maxlength="36" />
+        <select id="habitFreq">
+          <option value="diario">Diario</option>
+          <option value="cada2">Cada 2 días</option>
+          <option value="cada3">Cada 3 días</option>
+          <option value="cada7">Cada 7 días</option>
+          <option value="cada15">Cada 15 días</option>
+        </select>
+        <button type="submit">Agregar</button>
+        <button type="button" id="toggleRecordatorio" class="recordatorio-toggle">🔔 Activar recordatorios</button>
+      </form>
+      <button id="btnRecomendados" class="reco-btn">Explorar hábitos recomendados</button>
+      <div id="recoPanel" class="reco-panel" style="display:none"></div>
+      <div id="habitList" class="habit-list"></div>
+      <div class="lobezno" id="lobeznoBar" style="display:none;">
+        <span class="lobezno-emoji" id="emojiLobezno">🐺</span>
+        <span id="fraseLobezno"></span>
+      </div>
+      <div id="aywaFrase" class="aywa"></div>
+    </div>
+  </div>
+  <audio id="recordatorioAudio" src="https://cdn.pixabay.com/audio/2022/03/15/audio_115b9e5d9d.mp3"></audio>
+  <script src="js/habitos.js"></script>
+</body>
+</html>
+

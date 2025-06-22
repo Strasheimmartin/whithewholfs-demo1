@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard de Finanzas</title>
+  <link rel="stylesheet" href="style/main.css" />
+  <script defer src="js/finanzas.js"></script>
+</head>
+<body>
+  <!-- BOTONES DE NAVEGACIÓN -->
+  <div class="nav-bar">
+    <button class="btn-principal" onclick="window.location.href='index.html'">← Menú Principal</button>
+    <button class="btn-principal" onclick="window.location.href='desafios.html'">Ir a Desafíos</button>
+    <button class="btn-principal" id="botonCalculadoraPro" style="display:none;" onclick="window.location.href='calculadora-pro.html'">Calculadora PRO de Inversiones</button>
+  </div>
+  <div class="main-panel">
+    <!-- Columna Izquierda -->
+    <div class="col-izq">
+      <h1>Finanzas Conscientes</h1>
+      <form id="registroForm" style="margin-bottom:12px;">
+        <label for="monto">Monto:</label>
+        <input type="number" id="monto" placeholder="Monto" required />
+        <label for="tipoMovimiento">Tipo:</label>
+        <select id="tipoMovimiento">
+          <option value="ingreso">Ingreso</option>
+          <option value="gasto">Gasto</option>
+        </select>
+        <label for="categoria">Categoría:</label>
+        <select id="categoria">
+          <option value="activos">Activos</option>
+          <option value="necesidades">Necesidades</option>
+          <option value="ocio">Ocio</option>
+        </select>
+        <button type="submit" class="btn-principal" style="margin:6px 0 2px 0;padding:8px 14px;">Registrar</button>
+      </form>
+      <div>
+        <label for="filtroMes">Filtrar por mes:</label>
+        <select id="filtroMes">
+          <option value="todos">Todos</option>
+          <option value="0">Enero</option>
+          <option value="1">Febrero</option>
+          <option value="2">Marzo</option>
+          <option value="3">Abril</option>
+          <option value="4">Mayo</option>
+          <option value="5">Junio</option>
+          <option value="6">Julio</option>
+          <option value="7">Agosto</option>
+          <option value="8">Septiembre</option>
+          <option value="9">Octubre</option>
+          <option value="10">Noviembre</option>
+          <option value="11">Diciembre</option>
+        </select>
+        <label for="filtroCategoria">Filtrar por categoría:</label>
+        <select id="filtroCategoria">
+          <option value="todos">Todas</option>
+          <option value="activos">Activos</option>
+          <option value="necesidades">Necesidades</option>
+          <option value="ocio">Ocio</option>
+        </select>
+      </div>
+      <div id="resumenFlujo" class="resumen-flujo"></div>
+      <table id="tablaHistorial">
+        <thead>
+          <tr>
+            <th>Monto</th>
+            <th>Tipo</th>
+            <th>Categoría</th>
+            <th>Fecha</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <!-- Columna Derecha -->
+    <div class="col-der">
+      <div class="bloque-panel grafico-container">
+        <h2>Distribución del Flujo</h2>
+        <canvas id="graficoFinanzas" width="200" height="200"></canvas>
+      </div>
+      <div class="bloque-panel grafico-container">
+        <h2>Evolución del Saldo</h2>
+        <canvas id="graficoEvolucionSaldo" height="130"></canvas>
+      </div>
+      <div class="bloque-panel lobezno-container">
+        <h2>Estado del Lobezno</h2>
+        <img id="imgLobezno" src="assets/img/lobezno-balanceado.png" alt="Lobezno" />
+        <p id="fraseLobezno">Tu economía está en equilibrio. El camino es claro.</p>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Mostrar Calculadora PRO si está desbloqueada
+    if (localStorage.getItem("calcAvanzada") === "1") {
+      document.getElementById("botonCalculadoraPro").style.display = "inline-block";
+    }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="js/chart.umd.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>White Wolfs: El Despertar</title>
+  <link rel="stylesheet" href="style/main.css">
+  <script defer src="js/game.js"></script>
+  <style>
+    body {
+      background: #181d22;
+      margin: 0;
+      padding: 0;
+    }
+    .panel-recompensas {
+      background: #232a38;
+      border-radius: 12px;
+      padding: 12px 15px 6px 15px;
+      margin: 15px auto 0 auto;
+      max-width: 390px;
+      box-shadow: 0 2px 12px #1113;
+      font-size: 1em;
+    }
+    .recompensa-activa {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      background: #181f2c;
+      border-radius: 8px;
+      margin-bottom: 5px;
+      padding: 6px 11px;
+      color: #aee7fa;
+      font-weight: bold;
+      box-shadow: 0 1px 6px #0002;
+      font-size: 1em;
+    }
+    .recompensa-activa .icono {
+      font-size: 1.26em;
+      margin-right: 5px;
+    }
+    .recompensa-exp2 { color: #22d3ee; }
+    .recompensa-eywa { color: #f472b6; }
+    .recompensa-calc { color: #38d800; }
+    .recompensa-pro { color: #fde047; }
+    .btn-principal {
+      background: #38bdf8;
+      color: #222;
+      border: none;
+      padding: 10px 0;
+      font-size: 1.04em;
+      border-radius: 11px;
+      margin: 9px 0 0 0;
+      cursor: pointer;
+      font-weight: bold;
+      box-shadow: 0 1px 8px #1114;
+      transition: background 0.18s, color 0.18s;
+      width: 99%;
+      display: block;
+    }
+    .btn-principal:hover {
+      background: #0ea5e9;
+      color: #fff;
+    }
+    .btn-habitos {
+      background: #19ffc9;
+      color: #21272a;
+      margin-top: 10px;
+      margin-bottom: 8px;
+      border: none;
+      padding: 12px 0;
+      border-radius: 11px;
+      font-size: 1.09em;
+      font-weight: bold;
+      box-shadow: 0 1px 8px #19ffc93a;
+      cursor: pointer;
+      width: 99%;
+      transition: background 0.18s, color 0.18s;
+      display: block;
+      letter-spacing: 0.5px;
+    }
+    .btn-habitos:hover {
+      background: #0ddbb1;
+      color: #fff;
+    }
+    .eywa {
+      font-size: 1.01em;
+      color: #fde047;
+      background: #181f2c;
+      border-radius: 8px;
+      padding: 8px 9px;
+      margin-bottom: 13px;
+      display: inline-block;
+      box-shadow: 0 1px 4px #1111;
+    }
+    .container {
+      max-width: 390px;
+      min-height: 0;
+      margin: 24px auto;
+      background: #19212b;
+      border-radius: 18px;
+      box-shadow: 0 0 24px #0006;
+      padding: 14px 8px 12px 8px;
+      text-align: center;
+    }
+    .btn-cerrar-sesion {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      z-index: 1000;
+      background: #fde047;
+      color: #222;
+      border: none;
+      padding: 7px 16px;
+      border-radius: 8px;
+      font-weight: bold;
+      box-shadow: 0 1px 6px #1112;
+      cursor: pointer;
+    }
+    .btn-cerrar-sesion:hover {
+      background: #facc15;
+    }
+    .lobezno {
+      width: 82px;
+      height: 82px;
+      border-radius: 13px;
+      margin: 0 auto 5px auto;
+      display: block;
+      object-fit: cover;
+      box-shadow: 0 2px 10px #2225;
+    }
+    h1 {
+      margin-bottom: 13px;
+      font-size: 2.13rem;
+      line-height: 1.09em;
+      color: #18f8b6;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <!-- BOTÓN CERRAR SESIÓN -->
+  <button onclick="cerrarSesion()" class="btn-cerrar-sesion">Cerrar sesión</button>
+
+  <!-- PANEL DE RECOMPENSAS ACTIVAS -->
+  <div class="panel-recompensas" id="panelrecompensas" style="display:none;"></div>
+
+  <div class="container">
+    <h1>White Wolfs: El Despertar</h1>
+    <p class="eywa">
+      "Has dado el primer paso. Yo soy EYWA, la voz de la conciencia.<br>
+      ¿Estás listo para despertar?"
+    </p>
+    <!-- Lobo centrado y compacto -->
+    <img src="assets/img/evolucion/nivel_1__beb_col_rico.jpg" alt="lobo" id="loboavatar" class="lobezno">
+    
+    <!-- BOTÓN DE ACCESO AL PANEL DE HÁBITOS -->
+    <button class="btn-habitos" onclick="window.location.href='habitos.html'">
+      Ir al Panel de Hábitos 🐺
+    </button>
+    
+    <!-- Botones principales, apilados y compactos -->
+    <button class="btn-principal" onclick="window.location.href='perfil.html'">Ver mi Perfil</button>
+    <button class="btn-principal" onclick="window.location.href='finanzas.html'">Ingresar a Finanzas Conscientes</button>
+    <button class="btn-principal" onclick="window.location.href='metas.html'">
+  🏆 Tablero de Sueños / Metas Grandes
+</button>
+    <button class="btn-principal" onclick="window.location.href='educacion.html'">Ir a Educación Financiera</button>
+    <button class="btn-principal" onclick="window.location.href='desafios.html'">Ir a Desafíos</button>
+    <button class="btn-principal" onclick="window.location.href='tienda.html'">Tienda de Recompensas</button>
+    <button class="btn-principal" style="display:none;" id="botoncalculadorapro" onclick="window.location.href='calculadora-pro.html'">Calculadora PRO de Inversiones</button>
+    <!-- Botón WolfsCity, SIEMPRE VISIBLE -->
+    <button class="btn-principal" style="background: #9b47fd; color: #fff; margin-top:18px;" onclick="window.location.href='wolfscity.html'">
+      🌆 Ir a WolfsCity (Ciudad del Lobo)
+    </button>
+  </div>
+
+  <script>
+    // PANEL DE RECOMPENSAS ACTIVAS
+    function actualizarPanelRecompensas() {
+      let panel = document.getElementById("panelrecompensas");
+      let recompensas = [];
+      // EXP x2
+      let inicio = parseInt(localStorage.getItem("expx2inicio") || "0");
+      if (inicio) {
+        let ahora = Date.now();
+        if (ahora - inicio <= 86400000) {
+          recompensas.push('<span class="recompensa-activa recompensa-exp2"><span class="icono">⚡️</span> Multiplicador EXP x2 activo <span style="font-size:0.98em;color:#60f572">(24hs)</span></span>');
+        }
+      }
+      // Mensaje EYWA
+      let eywa = localStorage.getItem("eywamsginicio");
+      if (eywa) {
+        let hoy = new Date().toISOString().slice(0,10);
+        let fecha0 = new Date(eywa);
+        let fechahoy = new Date(hoy);
+        let dias = (fechahoy - fecha0) / (1000*60*60*24);
+        if (dias >= 0 && dias < 7) {
+          recompensas.push('<span class="recompensa-activa recompensa-eywa"><span class="icono">🌙</span> Mensaje diario de EYWA activo <span style="font-size:0.98em;color:#f472b6">(7 días)</span></span>');
+        }
+      }
+      // Calculadora PRO
+      if (localStorage.getItem("calcavanzada") === "1") {
+        recompensas.push('<span class="recompensa-activa recompensa-calc"><span class="icono">🧮</span> Calculadora PRO disponible</span>');
+        // Habilitar botón si está desbloqueada
+        document.getElementById("botoncalculadorapro").style.display = "block";
+      }
+      // Desafíos PRO
+      if (localStorage.getItem("desafiosprodesbloqueado") === "1") {
+        recompensas.push('<span class="recompensa-activa recompensa-pro"><span class="icono">⭐</span> Desafíos PRO habilitados</span>');
+      }
+
+      if (recompensas.length > 0) {
+        panel.innerHTML = recompensas.join('');
+        panel.style.display = "block";
+      } else {
+        panel.style.display = "none";
+      }
+    }
+
+    // BOTÓN CERRAR SESIÓN
+    function cerrarSesion() {
+      localStorage.removeItem("logueado");
+      window.location.href = "login.html";
+    }
+
+    // Mostrar panel al cargar
+    actualizarPanelRecompensas();
+
+    // MOSTRAR MENSAJE DE EYWA SI CORRESPONDE
+    function mostrarMensajeEywaSiCorresponde() {
+      let inicio = localStorage.getItem("eywamsginicio");
+      if (!inicio) return;
+      let hoy = new Date().toISOString().slice(0,10);
+      let fecha0 = new Date(inicio);
+      let fechahoy = new Date(hoy);
+      let dias = (fechahoy - fecha0) / (1000*60*60*24);
+      if (dias < 0 || dias >= 7) return;
+
+      const frases = [
+        "Hoy es un gran día para avanzar un paso más.",
+        "La disciplina te acerca a la libertad.",
+        "Recuerda: eres el Alpha de tu propia manada.",
+        "El hábito hace al maestro, la constancia te hace invencible.",
+        "No temas los desafíos: son portales hacia tu mejor versión.",
+        "Lo que hoy cuesta, mañana será tu fortaleza.",
+        "Vuelve a intentarlo: el éxito se construye a diario."
+      ];
+      let index = Math.floor(dias) % frases.length;
+
+      let div = document.createElement("div");
+      div.style.position = "fixed";
+      div.style.top = "26px";
+      div.style.left = "50%";
+      div.style.transform = "translateX(-50%)";
+      div.style.background = "#fde047";
+      div.style.color = "#222";
+      div.style.padding = "16px 28px";
+      div.style.fontSize = "1.14em";
+      div.style.fontWeight = "bold";
+      div.style.borderRadius = "15px";
+      div.style.zIndex = 9999;
+      div.style.boxShadow = "0 2px 12px #0006";
+      div.innerHTML = `👑 EYWA: <span style="font-weight:normal;">${frases[index]}</span>`;
+      document.body.appendChild(div);
+      setTimeout(()=>div.remove(), 11000);
+    }
+    mostrarMensajeEywaSiCorresponde();
+  </script>
+</body>
+</html>

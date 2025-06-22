@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>WolfsCity - Ciudad del Lobo</title>
+    <link rel="stylesheet" href="style/wolfscity.css">
+</head>
+<body>
+    <button class="btn-volver-menu" onclick="window.location.href='index.html'">⬅ Volver al Menú Principal</button>
+    <div class="ciudad-fondo"></div>
+    <div class="wolfscity-mapa">
+        <div class="lugares-circulo">
+            <!-- Menú circular alrededor del lobo -->
+            <div class="lugar" style="--pos:0;" data-tooltip="Banco" onclick="abrirModalBanco()">
+                <img src="assets/img/wolfcity/bank.png" alt="Banco" class="icono-ciudad">
+                <span>Banco</span>
+            </div>
+            <div class="lugar" style="--pos:1;" data-tooltip="Activos" onclick="abrirModalActivos()">
+                <img src="assets/img/wolfcity/Mercado de Activos.png" alt="Activos" class="icono-ciudad">
+                <span>Activos</span>
+            </div>
+            <div class="lugar" style="--pos:2;" data-tooltip="Oficina" onclick="abrirModalOficina()">
+                <img src="assets/img/wolfcity/oficina.png" alt="Oficina" class="icono-ciudad">
+                <span>Oficina</span>
+            </div>
+            <div class="lugar" style="--pos:3;" data-tooltip="Supermercado" onclick="abrirModalSuper()">
+                <img src="assets/img/wolfcity/super.png.png" alt="Supermercado" class="icono-ciudad">
+                <span>Supermercado</span>
+            </div>
+            <div class="lugar" style="--pos:4;" data-tooltip="Gimnasio" onclick="abrirModalGym()">
+                <img src="assets/img/wolfcity/gym.png" alt="Gimnasio" class="icono-ciudad">
+                <span>Gimnasio</span>
+            </div>
+            <div class="lugar" style="--pos:5;" data-tooltip="Vivienda" onclick="abrirModalVivienda()">
+                <img src="assets/img/wolfcity/vivienda.png" alt="Vivienda" class="icono-ciudad">
+                <span>Vivienda</span>
+            </div>
+            <div class="lugar" style="--pos:6;" data-tooltip="Biblioteca" onclick="abrirModalBiblioteca()">
+                <img src="assets/img/wolfcity/biblioteca.png" alt="Biblioteca" class="icono-ciudad">
+                <span>Biblioteca</span>
+            </div>
+            <!-- Avatar central -->
+            <div class="avatar-central">
+                <img id="loboAvatar" src="" alt="Lobo">
+                <div class="usuario-nivel">
+                    <span>Martín</span>
+                    <span class="nivel-badge">Lv. 2</span>
+                </div>
+            </div>
+        </div>
+        <div id="tooltipCiudad"></div>
+    </div>
+    <!-- Panel resumen global (fijo) -->
+    <div id="panelResumen" class="panel-resumen">
+        <div>💵 Saldo: <span id="saldoActual">$0</span></div>
+        <div>🔋 Energía: <span id="energiaActual">0</span></div>
+        <div>📈 Activos: <span id="activosActual">0</span></div>
+        <div>🎯 Misiones: <span id="misionesActual">0</span></div>
+    </div>
+    <!-- Modal genérico -->
+    <div id="modalCiudad" class="modal-ciudad">
+        <div class="modal-contenido" id="contenidoModalCiudad"></div>
+    </div>
+    <div id="modalFondo" class="modal-fondo"></div>
+    <main id="contenido"></main>
+    <div id="tooltipCiudad" class="tooltip-ciudad" style="display:none"></div>
+    <script src="js/wolfscity.js"></script>
+</body>
+</html>

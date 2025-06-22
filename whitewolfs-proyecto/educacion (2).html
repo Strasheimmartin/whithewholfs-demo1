@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>White Wolfs: Educación Financiera</title>
+  <link rel="stylesheet" href="style/main.css" />
+  <script defer src="js/educacion.js"></script>
+  <style>
+    .btn-volver-menu {
+      background: #a5b4fc;
+      color: #222;
+      border: none;
+      padding: 8px 18px;
+      font-size: 1em;
+      border-radius: 8px;
+      margin: 6px 0;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.2s;
+      box-shadow: 0 2px 8px #1112;
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      z-index: 1000;
+    }
+    .btn-volver-menu:hover {
+      background: #6366f1;
+      color: #fff;
+    }
+    .btn-accion {
+      background: #22d3ee;
+      color: #222;
+      border: none;
+      padding: 10px 22px;
+      font-size: 1.05em;
+      border-radius: 10px;
+      margin: 8px 4px 12px 0;
+      cursor: pointer;
+      font-weight: bold;
+      box-shadow: 0 2px 8px #1113;
+      transition: background 0.2s, color 0.2s;
+      display: inline-block;
+    }
+    .btn-accion:hover {
+      background: #0ea5e9;
+      color: #fff;
+    }
+    /* Estilo acordeón */
+    .accordion-section {
+      margin-top: 28px;
+    }
+    .accordion-btn {
+      width: 100%;
+      text-align: left;
+      background: #232a38;
+      color: #f9da6a;
+      border: none;
+      outline: none;
+      padding: 12px 18px;
+      font-size: 1.05em;
+      border-radius: 10px;
+      margin-bottom: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.2s;
+      box-shadow: 0 1px 6px #1112;
+    }
+    .accordion-btn:hover {
+      background: #1e293b;
+    }
+    .accordion-content {
+      display: none;
+      padding: 0 8px 8px 8px;
+      background: #181d25;
+      border-radius: 0 0 8px 8px;
+      margin-bottom: 18px;
+    }
+  </style>
+</head>
+<body>
+  <!-- BOTÓN VOLVER AL MENÚ -->
+  <button onclick="window.location.href='index.html'" class="btn-volver-menu">← Volver al menú</button>
+
+  <div class="container">
+    <h1>Expande tu Mente Financiera</h1>
+    <p class="eywa">"El conocimiento financiero es el primer paso para tu libertad."</p>
+
+    <section id="recomendacion">
+      <h2>Recomendación de Hoy</h2>
+      <div id="articuloRecomendado"></div>
+    </section>
+
+    <section>
+      <h2>Artículos y Guías</h2>
+      <ul id="listaArticulos"></ul>
+    </section>
+
+    <!-- Acordeón: Mi evolución financiera -->
+    <section class="accordion-section">
+      <button id="btnMostrarTimeline" class="accordion-btn">
+        ▼ Ver mi evolución financiera
+      </button>
+      <div id="timelineHistorial" class="accordion-content"></div>
+    </section>
+  </div>
+
+  <!-- Script para acordeón timeline -->
+  <script>
+    // Mostrar/ocultar historial con animación
+    const btnTimeline = document.getElementById('btnMostrarTimeline');
+    const timeline = document.getElementById('timelineHistorial');
+    btnTimeline.addEventListener('click', function() {
+      if (timeline.style.display === "none" || timeline.style.display === "") {
+        timeline.style.display = "block";
+        btnTimeline.textContent = "▲ Ocultar mi evolución financiera";
+      } else {
+        timeline.style.display = "none";
+        btnTimeline.textContent = "▼ Ver mi evolución financiera";
+      }
+    });
+  </script>
+</body>
+</html>

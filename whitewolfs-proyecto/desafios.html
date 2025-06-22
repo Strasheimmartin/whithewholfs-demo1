@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Panel de Desafíos</title>
+  <link rel="stylesheet" href="style/main.css" />
+  <style>
+    body { background: #171b1f; color: #e7ffee; font-family: 'Segoe UI', Arial, sans-serif; }
+    .container { max-width: 600px; margin: 36px auto; padding: 28px; background: #22272a; border-radius: 16px; box-shadow: 0 2px 18px #0007; }
+    h1 { color: #ffe066; font-size: 2em; margin-bottom: 16px; }
+    .volver-btn { background:#ffe066;color:#1e2326;font-weight:bold;border:none;border-radius:9px;padding:10px 22px;font-size:1.08em;cursor:pointer;margin-bottom:23px;display:block;margin-left:auto;margin-right:auto;}
+    .volver-btn:hover {background:#ffdc39;}
+    .reco-btn {margin-bottom:16px;background:#ffe066;color:#1a1a1a;font-weight:bold;border-radius:8px;padding:8px 13px 8px 30px;border:none;cursor:pointer;position:relative;}
+    .reco-btn::before {content:"🌟"; position:absolute;left:8px;top:8px;}
+    .reco-panel {background:#252e36;border-radius:12px;padding:16px 16px 10px 16px;margin:0 0 14px 0;}
+    .reco-desafio {margin-bottom:15px;}
+    .reco-titulo {font-size:1.07em;font-weight:bold;margin-bottom:2px;}
+    .reco-desc {font-size:.97em;color:#fffa;}
+    .reco-btn-add {padding:5px 12px;border-radius:7px;background:#19ffc9;color:#21272a;font-weight:bold;border:none;cursor:pointer;margin-top:4px;}
+    .habit-form { display: flex; gap: 16px; margin-bottom: 20px; }
+    .habit-form input { padding: 7px 8px; border-radius: 7px; border: none; background: #232d32; color: #aff; font-size: 1em; }
+    .habit-form button { padding: 7px 14px; background: #ffe066; color: #171b1f; border: none; border-radius: 7px; font-weight: bold; cursor: pointer; transition: background 0.18s;}
+    .habit-form button:hover { background: #f1c836;}
+    .habit-list { margin-top: 18px; }
+    .habit-item { display: flex; align-items: center; justify-content: space-between; background: #252e32; border-radius: 9px; margin-bottom: 8px; padding: 8px 12px; }
+    .habit-name { font-size: 1.07em; font-weight: bold; }
+    .btn-done, .btn-del { border: none; padding: 5px 12px; border-radius: 6px; font-size: .98em; cursor: pointer;}
+    .btn-done { background: #32ff92; color: #1a1a1a; margin-right: 7px;}
+    .btn-done.done { background: #30c630; color: #fff; }
+    .btn-del { background: #ff5555; color: #fff; }
+    .racha { background: #222; color: #ffe066; border-radius: 7px; padding: 1px 7px; margin-left: 8px; font-size: .95em;}
+    .aywa { font-style: italic; color: #ffe066; margin-top: 10px; }
+    @media (max-width: 700px) {
+      .container { padding: 9px 2vw; }
+      .habit-form { flex-direction: column; gap: 8px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <button class="volver-btn" onclick="window.location.href='index.html'">← Volver al menú principal</button>
+    <h1>Panel de Desafíos</h1>
+    <button id="btnRecomendados" class="reco-btn">Ver desafíos recomendados</button>
+    <div id="recoPanel" class="reco-panel" style="display:none"></div>
+    <form id="desafioForm" class="habit-form">
+      <input type="text" id="nombreDesafio" placeholder="Nuevo desafío" required maxlength="32" />
+      <input type="text" id="descDesafio" placeholder="Descripción" maxlength="50" />
+      <button type="submit">Agregar</button>
+    </form>
+    <div id="listaDesafios" class="habit-list"></div>
+    <div id="aywaDesafio" class="aywa"></div>
+  </div>
+  <script src="js/desafios.js"></script>
+</body>
+</html>

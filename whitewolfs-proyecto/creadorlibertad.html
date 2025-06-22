@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>creador de libertad | simulador pro</title>
+  <link rel="stylesheet" href="style/main.css">
+  <!-- chart.js offline -->
+  <script src="js/chart.min.js"></script>
+  <script defer src="js/creadorlibertad.js"></script>
+  <style>
+    body {
+      background: #181b22;
+      min-height: 100vh;
+      margin: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+    }
+    .container {
+      max-width: 480px;
+      margin: 40px auto;
+      background: #232735;
+      border-radius: 18px;
+      box-shadow: 0 2px 16px #0006;
+      padding: 32px 20px;
+      color: #fff;
+    }
+    h1, h2 {
+      text-align: center;
+      margin-top: 0;
+    }
+    #loginBox, #simuladorBox {
+      width: 100%;
+      margin: 0 auto;
+    }
+    section {
+      margin: 18px 0 0 0;
+      background: #23273d;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px #0003;
+      padding: 18px 14px;
+    }
+    input, select, button {
+      font-size: 1em;
+      border-radius: 7px;
+      border: none;
+      padding: 8px 10px;
+      margin: 7px 0;
+      width: 100%;
+      max-width: 250px;
+      box-sizing: border-box;
+      background: #272b39;
+      color: #eee;
+      outline: none;
+    }
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    button {
+      background: #2bb3a3;
+      color: #fff;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.2s;
+      margin-top: 12px;
+    }
+    button:hover {
+      background: #1fa38d;
+    }
+    #bloqueGrafico {
+      margin-top: 28px;
+      background: none;
+      box-shadow: none;
+      border-radius: 0;
+      padding: 0;
+    }
+    canvas {
+      display: block;
+      margin: 0 auto;
+      background: #15171d;
+      border-radius: 8px;
+      box-shadow: 0 1px 5px #0004;
+    }
+    @media (max-width: 600px) {
+      .container {
+        max-width: 99vw;
+        padding: 12px 2vw;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- BOTÓN VOLVER AL MENÚ -->
+  <button onclick="window.location.href='index.html'" style="position:fixed; top:10px; left:10px; z-index:1000;">← Volver al menú</button>
+
+  <div class="container">
+    <h1>creador de libertad <span style="font-size:1.1em;">🦾</span></h1>
+    <div id="loginBox" class="box-login"></div>
+
+    <!-- Solo visible tras login -->
+    <div id="simuladorBox" class="hidden">
+      <section>
+        <h2>simulador de inversiones pro</h2>
+        <div id="progresoNiveles" class="niveles-barra"></div>
+        <div id="simuladorContainer"></div>
+        <div id="resultadoSimulador" class="hidden"></div>
+        <div id="festejoDesbloqueo"></div>
+        <div id="historialSimulador"></div>
+        <div id="bloqueGrafico">
+          <canvas id="graficoBarras" height="110"></canvas>
+          <div style="text-align:center;margin:10px 0;">
+            <button id="btnVerEvolucion" class="btn-evolucion">Ver evolución histórica</button>
+          </div>
+          <canvas id="graficoLineas" class="hidden" height="160"></canvas>
+        </div>
+        <button id="resetSimuladorBtn" class="btn-reset-simulador">Resetear simulador</button>
+      </section>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>White Wolfs: Mi Perfil</title>
+  <link rel="stylesheet" href="style/main.css" />
+  <script defer src="js/perfil.js"></script>
+  <style>
+    body {
+      background: #181d22;
+      margin: 0;
+      padding: 0;
+    }
+    .perfil-grid {
+      display: flex;
+      flex-direction: row;
+      gap: 32px;
+      justify-content: center;
+      align-items: flex-start;
+      max-width: 900px;
+      margin: 48px auto 0 auto;
+      background: #19212b;
+      border-radius: 20px;
+      box-shadow: 0 0 30px #0009;
+      padding: 34px 24px 28px 24px;
+    }
+    .perfil-col {
+      flex: 1 1 320px;
+      min-width: 260px;
+      max-width: 380px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+    }
+    /* Izquierda: avatar y stats */
+    .avatar-lobo {
+      width: 135px; height: 135px;
+      border-radius: 20px;
+      background: #1118;
+      margin-bottom: 13px;
+      object-fit: cover;
+      box-shadow: 0 2px 10px #222a;
+    }
+    .perfil-nombre {
+      color: #e0f2fe;
+      font-size: 1.33em;
+      margin-bottom: 3px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      text-align: center;
+    }
+    .nivel-badge {
+      background: #38bdf8;
+      color: #19212b;
+      font-weight: bold;
+      font-size: 1.08em;
+      border-radius: 30px;
+      display: inline-block;
+      padding: 5px 18px;
+      margin-bottom: 12px;
+    }
+    .barra-exp {
+      height: 22px;
+      background: #222a33;
+      border-radius: 13px;
+      margin: 10px auto 18px auto;
+      width: 100%;
+      overflow: hidden;
+      box-shadow: 0 1px 8px #1113;
+      max-width: 220px;
+      min-width: 110px;
+    }
+    .barra-exp-in {
+      height: 100%;
+      background: linear-gradient(90deg, #00e676 0%, #38bdf8 100%);
+      border-radius: 13px;
+      transition: width 0.7s cubic-bezier(.67,1.2,.5,1.05);
+      width: 0%;
+    }
+    .exp-detalle {
+      color: #60f572;
+      font-size: 0.99em;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+    /* Derecha: logros y hábitos */
+    .panel-logros {
+      width: 100%;
+      max-width: 370px;
+      min-width: 190px;
+      background: #1e2733;
+      border-radius: 12px;
+      box-shadow: 0 1px 8px #0002;
+      padding: 17px 14px 13px 18px;
+      color: #e0e9f8;
+      margin-bottom: 10px;
+      text-align: left;
+    }
+    .panel-logros h4 {
+      color: #fde047;
+      margin: 5px 0 7px 0;
+      font-size: 1.14em;
+      letter-spacing: 0.5px;
+    }
+    .panel-logros ul {
+      margin: 0 0 0 10px; padding: 0;
+      color: #aee7fa; font-size: 1.08em;
+    }
+    .panel-logros li {
+      margin-bottom: 2px;
+      line-height: 1.32;
+    }
+    .btn-volver-menu {
+      background: #a5b4fc;
+      color: #222;
+      border: none;
+      padding: 10px 24px;
+      font-size: 1.09em;
+      border-radius: 9px;
+      margin: 24px 0 0 0;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.2s;
+      box-shadow: 0 2px 8px #1112;
+      display: block;
+      width: 98%;
+      max-width: 240px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .btn-volver-menu:hover {
+      background: #6366f1;
+      color: #fff;
+    }
+    @media (max-width: 800px) {
+      .perfil-grid { flex-direction: column; gap: 10px; align-items: center; padding: 14px 3vw 18px 3vw; }
+      .panel-logros { margin-bottom: 13px; }
+      .btn-volver-menu { margin-top: 13px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="perfil-grid">
+    <!-- Columna izquierda -->
+    <div class="perfil-col">
+      <span class="nivel-badge" id="nivelUsuario">Nivel 1</span>
+      <div class="perfil-nombre" id="nombreUsuario">Alpha (vos)</div>
+      <img src="assets/img/evolucion/colerico-nivel1.jpg" alt="Lobo Evolución" class="avatar-lobo" id="avatarLobo">
+      <div class="barra-exp">
+        <div class="barra-exp-in" id="barraExp"></div>
+      </div>
+      <div class="exp-detalle" id="expDetalle">44% EXP para subir de nivel</div>
+    </div>
+    <!-- Columna derecha -->
+    <div class="perfil-col" style="align-items: flex-start;">
+      <div class="panel-logros">
+        <h4>Desafíos completados:</h4>
+        <ul id="listaLogros"></ul>
+      </div>
+      <div class="panel-logros">
+        <h4>Hábitos del día cumplidos:</h4>
+        <ul id="listaHabitos"></ul>
+      </div>
+    </div>
+  </div>
+  <button class="btn-volver-menu" onclick="window.location.href='index.html'">← Volver al menú</button>
+</body>
+</html>
